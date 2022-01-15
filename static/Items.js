@@ -31,13 +31,25 @@ export const items = [
     price: 39000
   },
   {
-    name: "Soda Galaxy Mojito",
-    use: ["7_5", "22_30", "21_120"],
+    name: "Soda Pink Berry",
+    use: ["23_30", "22_10", "5_20", "13_140"],
     price: 39000
   },
-  { name: "Soda Pink Berry", use: ["19_40", "22_30", "21_120"], price: 39000 },
-  { name: "Sweet Cocktail", use: ["19_40", "22_30", "21_120"], price: 55000 },
-  { name: "Golden Cocktail", use: ["19_40", "22_30", "21_120"], price: 55000 },
+  {
+    name: "Soda Galaxy Mojito",
+    use: ["7_5", "11_10", "5_15", "13_100"],
+    price: 39000
+  },
+  {
+    name: "Sweet Cocktail",
+    use: ["5_20", "8_10", "13_40", "14_330"],
+    price: 55000
+  },
+  {
+    name: "Golden Cocktail",
+    use: ["11_20", "8_10", "13_40", "15_330"],
+    price: 55000
+  },
   { name: "Khô gà", use: [], price: 25000 },
   { name: "Khô bò", use: [], price: 25000 },
   { name: "Tart trứng", use: [], price: 12000 },
@@ -157,5 +169,11 @@ export const material = [
     unit: "ml",
     id: 22,
     exchangeNum: 1.034
+  },
+  {
+    name: "Nước hoa đậu biếc",
+    unit: "ml",
+    id: 23,
+    exchangeNum: 0.026
   }
 ];
