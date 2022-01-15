@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     now() {
-      return moment(new Date()).format("DD/MM/YYYY hh:mm");
+      return moment(new Date()).format("DD/MM/YYYY HH:mm");
     },
     useMaterial() {
       this.materials = this.materials.map(e => {
