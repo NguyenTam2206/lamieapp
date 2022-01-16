@@ -8,7 +8,7 @@ export const items = [
   { name: "Cam vắt", use: ["3_120"], price: 18000 },
   { name: "Ép dưa hấu", use: [], price: 18000 },
   {
-    name: "Trà ổi hồng chanh dây",
+    name: "Trà ổi hồng",
     use: ["8_30", "4_15", "21_120"],
     price: 35000
   },
