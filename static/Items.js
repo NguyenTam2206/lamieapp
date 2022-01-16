@@ -50,6 +50,21 @@ export const items = [
     use: ["11_20", "8_10", "13_40", "15_330"],
     price: 55000
   },
+  {
+    name: "Sting (lon)",
+    use: [],
+    price: 18000
+  },
+  {
+    name: "Coca (lon)",
+    use: [],
+    price: 18000
+  },
+  {
+    name: "Sprite (lon)",
+    use: [],
+    price: 18000
+  },
   { name: "Khô gà", use: [], price: 25000 },
   { name: "Khô bò", use: [], price: 25000 },
   { name: "Tart trứng", use: [], price: 12000 },
