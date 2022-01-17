@@ -20,9 +20,56 @@
       </v-col>
     </v-row>
 
-    <div class="text-right mt-8">
+    <div class="text-center mt-8 board">
       <div>{{ now() }}</div>
-      <div>Doanh thu : {{revenue | currency('Đ')}}</div>
+      <v-row>
+        <v-col cols="12" md="6">
+          <div>Thu</div>
+          <div>{{revenue | currency('Đ')}}</div>
+        </v-col>
+        <v-col cols="12" md="6">
+          <div>Chi</div>
+          <div>
+            <div>{{out | currency('Đ')}}</div>
+            <div class="grey--text">{{outNote ? `(${outNote})` : ''}}</div>
+            <v-dialog v-model="dialog" width="500">
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn small dark v-bind="attrs" v-on="on">Sửa</v-btn>
+              </template>
+
+              <v-card class="pt-8 px-4">
+                <v-textarea
+                  filled
+                  name="input-7-4"
+                  label="Diễn giải"
+                  v-model="outNote"
+                  placeholder="Chi ít thôi nhé"
+                ></v-textarea>
+                <v-text-field
+                  height="30"
+                  hide-details
+                  class="ml-2"
+                  outlined
+                  dense
+                  type="number"
+                  label="Nhập tổng chi"
+                  min="0"
+                  v-model="out"
+                ></v-text-field>
+
+                <v-divider></v-divider>
+
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="primary" text @click="dialog = false">Sửa</v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+          </div>
+        </v-col>
+      </v-row>
+      <div class="text-center result">THU - CHI = {{revenue - out | currency('Đ')}}</div>
+      <!-- <v-btn class="mt-4" @click="saveDialog = true">Lưu lại</v-btn> -->
     </div>
     <div class="line"></div>
     <div class="text-center mb-8">NGUYÊN VẬT LIỆU TIÊU HAO</div>
@@ -43,6 +90,33 @@
         </div>
       </v-col>
     </v-row>
+    <v-dialog v-model="saveDialog" width="500">
+      <v-card class="pt-8 px-4">
+        <div>Thu : {{revenue | currency('Đ')}}</div>
+        <div>
+          Chi : {{out | currency('Đ')}}
+          <span class="grey--text">{{outNote ? `(${outNote})` : ''}}</span>
+        </div>
+        <div>Thu - Chi = {{revenue - out | currency('Đ')}}</div>
+
+        <v-text-field
+          hide-details
+          class="mt-4"
+          outlined
+          dense
+          label="Nhập Mã Lưu"
+          placeholder="Ví dụ ngày 16/02/2022. Nhập 16022022"
+          v-model="idResult"
+        ></v-text-field>
+        <div class="red--text" v-if="showNoti">{{showNoti}}</div>
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" text @click="save">Lưu</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -60,7 +134,13 @@ export default {
     return {
       list,
       materials,
-      revenue: 0
+      revenue: 0,
+      out: 0,
+      outNote: "",
+      dialog: false,
+      saveDialog: false,
+      idResult: "",
+      showNoti: ""
     };
   },
   methods: {
@@ -90,13 +170,34 @@ export default {
     revenueComputed() {
       let revenue = 0;
       this.list.forEach(e => {
-        console.log("e", e);
         let total = Number(e.quantity) * e.price;
-        console.log("total", total);
         revenue += total;
       });
-      console.log(revenue);
       this.revenue = revenue;
+    },
+    save() {
+      if (this.idResult) {
+        this.saveDialog = false;
+        let data = {
+          id: this.idResult,
+          in: this.revenue,
+          out: this.out,
+          result: this.revenue - this.out
+        };
+        this.saveDB(data);
+      } else {
+        this.showNoti = "Vui lòng nhập mã tham chiếu";
+        setTimeout(() => {
+          this.showNoti = "";
+        }, 3000);
+      }
+    },
+    saveDB(data) {
+      this.$axios({
+        url: `${process.env.baseAPI}/result/`,
+        method: "POST",
+        data: data
+      }).then(res => console.log("res", res.data));
     }
   },
   watch: {
@@ -138,5 +239,9 @@ export default {
 
 .hide-scroll {
   overflow-x: scroll;
+}
+.board {
+  border: solid 1px #ccc;
+  padding: 20px;
 }
 </style>

@@ -37,7 +37,6 @@
 
 <script>
 export default {
-  name: "DefaultLayout",
   data() {
     return {
       clipped: false,
@@ -45,9 +44,14 @@ export default {
       items: [
         {
           icon: "mdi-apps",
-          title: "Nguyên vật liệu",
+          title: "Tool Kết Ngày",
           to: "/"
         }
+        // {
+        //   icon: "mdi-chart-bar",
+        //   title: "Báo cáo",
+        //   to: "/report"
+        // }
       ],
       miniVariant: false,
       title: "L'amie"

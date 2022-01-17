@@ -73,5 +73,8 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {}
+  build: {},
+  env: {
+    baseAPI: "https://my-json-server.typicode.com/NguyenTam2206/lamiejsonserver"
+  }
 };
