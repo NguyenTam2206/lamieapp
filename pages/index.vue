@@ -68,7 +68,9 @@
           </div>
         </v-col>
       </v-row>
-      <div class="text-center result">THU - CHI = {{revenue - out | currency('Đ')}}</div>
+      <div
+        class="text-center result"
+      >THU - CHI = {{out > revenue ? '-' : '' }} {{revenue - out | currency('Đ')}}</div>
       <!-- <v-btn class="mt-4" @click="saveDialog = true">Lưu lại</v-btn> -->
     </div>
     <div class="line"></div>
