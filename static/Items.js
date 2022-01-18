@@ -65,6 +65,21 @@ export const items = [
     use: [],
     price: 18000
   },
+  {
+    name: "Bò cụng (lon)",
+    use: [],
+    price: 20000
+  },
+  {
+    name: "Nước chanh",
+    use: [],
+    price: 18000
+  },
+  {
+    name: "Ca cao (nóng)",
+    use: ["2_10", "17_30"],
+    price: 25000
+  },
   { name: "Khô gà", use: [], price: 25000 },
   { name: "Khô bò", use: [], price: 25000 },
   { name: "Tart trứng", use: [], price: 12000 },
