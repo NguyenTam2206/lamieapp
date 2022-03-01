@@ -1,5 +1,5 @@
 <template>
-  <div>This is report page</div>
+  <div>This is report page in branch featured1</div>
 </template>
 
 <script>
